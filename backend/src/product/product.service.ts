@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, InternalServerErrorException, NotFound
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, isValidObjectId } from 'mongoose';
 import { CreateProductDto } from 'src/dto/create-product.dto';
+import { UpdateProductDto } from 'src/dto/update-product.dto';
 import { Product } from 'src/entities/product.entity';
 
 @Injectable()
@@ -19,10 +20,7 @@ export class ProductService {
 
       return product;
     } catch (error) {
-      if ( error.code === 11000) {
-        throw new BadRequestException(`Product exists in DB ${JSON.stringify(error.keyValue)}`)
-      }
-      throw new InternalServerErrorException(`Can't create product`);
+      this.handleExceptions( error );
     }
 
   }
@@ -52,6 +50,37 @@ export class ProductService {
     
 
     return product;
+  }
+
+  async update( term: string, updateProductDto: UpdateProductDto) {
+
+    const product = await this.findOne( term, 'sku' );
+    if ( updateProductDto.name )
+      updateProductDto.name = updateProductDto.name.toLowerCase();
+    
+    try {
+      await product.updateOne( updateProductDto );
+      return { ...product.toJSON(), ...updateProductDto };
+      
+    } catch (error) {
+      this.handleExceptions( error );
+    }
+  }
+
+  async remove( id: string) {
+    const { deletedCount } = await this.productModel.deleteOne({ _id: id });
+    if ( deletedCount === 0 )
+      throw new BadRequestException(`Product with id "${ id }" not found`);
+
+    return;
+  }
+
+  private handleExceptions( error: any ) {
+    if ( error.code === 11000 ) {
+      throw new BadRequestException(`Product exists in db ${ JSON.stringify( error.keyValue ) }`);
+    }
+    console.log(error);
+    throw new InternalServerErrorException(`Can't create Product - Check server logs`);
   }
 
 }
