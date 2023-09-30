@@ -16,13 +16,13 @@ export class ListProductsComponent implements OnInit {
 
   ngOnInit() {
 
-    this.productsService.getAllProducts$(0, 5).subscribe((result) => this.dataProducts = result);
+    this.productsService.getAllProducts$(0, 6).subscribe((result) => this.dataProducts = result);
 
   }
 
   getProducts(value: number) {
-    let skip: number = value * 5;
-    this.productsService.getAllProducts$(skip, 5).subscribe((result) => this.dataProducts = result);
+    let skip: number = value * 6;
+    this.productsService.getAllProducts$(skip, 6).subscribe((result) => this.dataProducts = result);
   }
 
 }
