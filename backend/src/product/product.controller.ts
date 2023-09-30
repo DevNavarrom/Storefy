@@ -1,8 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestjs/common';
 import { CreateProductDto } from 'src/dto/create-product.dto';
 import { ProductService } from './product.service';
 import { UpdateProductDto } from 'src/dto/update-product.dto';
 import { ParseMongoIdPipe } from 'src/common/pipes/parse-mongo-id.pipe';
+import { ProductsResponseDTO } from 'src/dto/response.dto';
+import { Product } from 'src/entities/product.entity';
 
 @Controller('product')
 export class ProductController {
@@ -15,8 +17,23 @@ export class ProductController {
   }
 
   @Get()
-  findAll() {
-    return this.productService.findAll();
+  async findAll(
+    @Query('skip') skip: number = 0,
+    @Query('limit') limit: number = 10
+  ): Promise<ProductsResponseDTO> {
+    const products: Product[] = await this.productService.findAll(skip, limit);
+    
+    const total: number = await this.productService.getTotalProductsCount();
+
+    const response: ProductsResponseDTO = {
+      products,
+      limit,
+      total,
+      skip,
+    };
+    console.log(response);
+    
+    return response;
   }
 
   @Get(':filter')

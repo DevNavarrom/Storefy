@@ -25,8 +25,12 @@ export class ProductService {
 
   }
 
-  findAll() {
-    return {products: []}
+  async getTotalProductsCount(): Promise<number> {
+    return this.productModel.countDocuments().exec();
+  }
+
+  async findAll(skip: number, limit: number) {
+    return await this.productModel.find().skip(skip).limit(limit).exec();
   }
 
   async findOne(term: string, filter: string) {
