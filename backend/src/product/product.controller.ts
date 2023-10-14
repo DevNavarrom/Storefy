@@ -36,7 +36,7 @@ export class ProductController {
     return response;
   }
 
-  @Get(':filter')
+  @Post(':filter')
   findOne( @Param('filter') filter: string, @Body() body: { term: string} ) {
     return this.productService.findOne(body.term, filter);
   }
