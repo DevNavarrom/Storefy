@@ -23,15 +23,12 @@ export class PaginationComponent implements OnInit {
 
       for (let i = 1; i <= this.total; i++) {
         this.items.push(i);
-      }
-      console.log(this.items.length);
-      
+      }      
     }
 
   }
 
   handlePagination(value: number): void {
-    console.log(value);
     this.currentPage = value-1;
     
     this.eventPagination.emit(value-1);

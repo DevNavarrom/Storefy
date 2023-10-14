@@ -8,13 +8,15 @@ import { CreateProductComponent } from './pages/create-product/create-product.co
 import { DetailProductComponent } from './pages/detail-product/detail-product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormProductsComponent } from './components/form-products/form-products.component';
 
 
 @NgModule({
   declarations: [
     ListProductsComponent,
     CreateProductComponent,
-    DetailProductComponent
+    DetailProductComponent,
+    FormProductsComponent
   ],
   imports: [
     CommonModule,

@@ -14,7 +14,7 @@ const routes: Routes = [
     component: CreateProductComponent
   },
   {
-    path: 'detail',
+    path: 'detail/:sku',
     component: DetailProductComponent
   },
 ];

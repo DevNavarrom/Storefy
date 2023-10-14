@@ -1,0 +1,119 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="space-y-6">
+
+    <div class="border-b border-gray-900/10 pb-10">
+      <!-- <h2 class="text-base font-semibold leading-7 text-gray-900">Create Product</h2> -->
+
+      <div class="mt-5 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-6">
+        <div class="sm:col-span-2">
+          <label for="sku" class="block text-sm font-medium leading-6 text-gray-900">SKU</label>
+          <div class="mt-2">
+            <input 
+              formControlName="sku"
+              type="text" 
+              id="sku"
+              autocomplete="sku-product"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              [ngClass]="{'bg-red-50 border-red-500 text-red-900 placeholder-red-700': submitted && fc['sku'].errors}"
+            >
+            <p *ngIf="submitted && fc['sku'].errors && fc['sku'].errors['required']" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oh, snapp!</span> SKU is required.</p>
+          </div>
+        </div>
+
+        <div class="sm:col-span-4">
+          <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+          <div class="mt-2">
+            <input 
+              formControlName="name"
+              type="text"  
+              id="name" 
+              autocomplete="name-product"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              [ngClass]="{'bg-red-50 border-red-500 text-red-900 placeholder-red-700': submitted && fc['name'].errors}"
+            >
+            <p *ngIf="submitted && fc['name'].errors && fc['name'].errors['required']" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oh, snapp!</span> Name is required.</p>
+          </div>
+        </div>
+
+        <div class="col-span-full">
+          <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Description</label>
+          <div class="mt-2">
+            <textarea 
+              formControlName="description"
+              id="description" 
+              rows="1" 
+              autocomplete="description-product"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              [ngClass]="{'bg-red-50 border-red-500 text-red-900 placeholder-red-700': submitted && fc['description'].errors}"
+            ></textarea>
+            <p *ngIf="submitted && fc['description'].errors && fc['description'].errors['required']" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oh, snapp!</span> Description is required.</p>
+          </div>
+        </div>
+
+        <div class="col-span-full">
+          <label for="tags" class="block text-sm font-medium leading-6 text-gray-900">Tags</label>
+          <div class="mt-2">
+            <input 
+              formControlName="tags"
+              type="text" 
+              placeholder="Hint: a, b, c"  
+              id="tags" 
+              autocomplete="tags-product"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              [ngClass]="{'bg-red-50 border-red-500 text-red-900 placeholder-red-700': submitted && fc['tags'].errors}"
+            >
+            <p *ngIf="submitted && fc['tags'].errors && fc['tags'].errors['required']" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oh, snapp!</span> Tags is required.</p>
+          </div>
+        </div>
+
+        <div class="sm:col-span-3">
+          <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Price</label>
+          <div class="mt-2">
+            <input 
+              formControlName="price"
+              type="number" 
+              id="price" 
+              autocomplete="price-product"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              [ngClass]="{'bg-red-50 border-red-500 text-red-900 placeholder-red-700': submitted && fc['price'].errors}"
+            >
+            <p *ngIf="submitted && fc['price'].errors && fc['price'].errors['required']" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oh, snapp!</span> Price is required.</p>
+          </div>
+        </div>
+
+        <div class="sm:col-span-3">
+          <label for="stock" class="block text-sm font-medium leading-6 text-gray-900">Stock</label>
+          <div class="mt-2">
+            <input 
+              formControlName="stock"
+              type="number"  
+              id="stock" 
+              autocomplete="stock-product"
+              class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              [ngClass]="{'bg-red-50 border-red-500 text-red-900 placeholder-red-700': submitted && fc['stock'].errors}"
+            >
+            <p *ngIf="submitted && fc['stock'].errors && fc['stock'].errors['required']" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oh, snapp!</span> Stock is required.</p>
+          </div>
+        </div>
+
+        <div class="col-span-full">
+          <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Photo</label>
+          <input 
+            formControlName="image"
+            id="file_input"
+            autocomplete="file_input-product"
+            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file"
+            [ngClass]="{'bg-red-50 border-red-500 text-red-900 placeholder-red-700': submitted && fc['image'].errors}"
+            >
+            <p *ngIf="submitted && fc['image'].errors && fc['image'].errors['required']" class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oh, snapp!</span> Photo is required.</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-6 flex items-center justify-end gap-x-6">
+    <button type="button" (click)="onReset()" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
+    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+  </div>
+</form>

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CardItemComponent } from './components/card-item/card-item.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -13,7 +14,8 @@ import { NotificationComponent } from './components/notification/notification.co
     NotificationComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   exports: [ 
     CardItemComponent, 

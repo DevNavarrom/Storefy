@@ -32,4 +32,16 @@ export class ProductsService {
     return this.http.post<IProduct>(`${this.URL}/product`, product, {headers: this.headers});
   }
 
+  updateProduct$( product: IProduct ): Observable<IProduct> {
+    return this.http.patch<IProduct>(`${this.URL}/product/${product.sku}`, product, { headers: this.headers });
+  }
+
+  getProduct$(sku: string): Observable<IProduct> {
+    let filter = {
+      term: sku
+    }
+
+    return this.http.post<IProduct>(`${this.URL}/product/sku`, filter, { headers: this.headers } );
+  }
+
 }

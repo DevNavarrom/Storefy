@@ -1,1 +1,5 @@
-<p>detail-product works!</p>
+<app-form-products 
+  *ngIf="product.sku!==''" 
+  (eventSave)="handleSave($event)" 
+  [product]="product" 
+/>
