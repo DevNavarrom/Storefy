@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Product } from 'src/app/core/models/product.model';
+import { IProduct } from 'src/app/core/models/product.model';
 
 @Component({
   selector: 'app-card-item',
@@ -8,6 +8,14 @@ import { Product } from 'src/app/core/models/product.model';
 })
 export class CardItemComponent {
 
-  @Input() modelProduct: Product = new Product();
+  @Input() modelProduct: IProduct = {
+    sku: '',
+    name: '',
+    description: '',
+    tags: [],
+    price: 0,
+    stock: 0,
+    image: ''
+  };
 
 }

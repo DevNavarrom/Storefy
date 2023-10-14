@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/core/models/product.model';
+import { IProduct } from 'src/app/core/models/product.model';
 import { ResponseProducts } from 'src/app/core/models/response.model';
 import { ProductsService } from '../../services/products.service';
 
@@ -10,7 +10,7 @@ import { ProductsService } from '../../services/products.service';
 })
 export class ListProductsComponent implements OnInit {
 
-  dataProducts: ResponseProducts<Product> = new ResponseProducts<Product>();
+  dataProducts: ResponseProducts<IProduct> = new ResponseProducts<IProduct>();
 
   constructor( private productsService: ProductsService ) {}
 

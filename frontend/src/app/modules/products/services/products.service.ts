@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment.development';
 import { Observable, map } from 'rxjs';
 import { ResponseProducts } from 'src/app/core/models/response.model';
-import { Product } from 'src/app/core/models/product.model';
+import { IProduct } from 'src/app/core/models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,18 +12,24 @@ export class ProductsService {
 
   private readonly URL = environment.api;
 
+  headers: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
+  });
+
   constructor( private http: HttpClient ) { }
 
-  getAllProducts$(skip?: number, limit?: number): Observable<ResponseProducts<Product>> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    });
+  getAllProducts$(skip?: number, limit?: number): Observable<ResponseProducts<IProduct>> {
 
     let _skip = skip ??= 0;
-    return this.http.get<ResponseProducts<Product>>(`${this.URL}/product?limit=${limit}&skip=${_skip}`, {headers}).pipe(
-      map((data: ResponseProducts<Product>) => data )
+
+    return this.http.get<ResponseProducts<IProduct>>(`${this.URL}/product?limit=${limit}&skip=${_skip}`, {headers: this.headers}).pipe(
+      map((data: ResponseProducts<IProduct>) => data )
     );
+  }
+
+  saveProduct$( product: IProduct ): Observable<IProduct> {
+    return this.http.post<IProduct>(`${this.URL}/product`, product, {headers: this.headers});
   }
 
 }
