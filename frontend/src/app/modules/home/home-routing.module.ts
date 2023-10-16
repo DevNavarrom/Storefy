@@ -11,15 +11,18 @@ const routes: Routes = [
     children: [
       {
         path: 'products',
-        loadChildren: () => import('../products/products.module').then(m => m.ProductsModule)
+        loadChildren: () => import('../products/products.module').then(m => m.ProductsModule),
+        data: { breadcrumb : 'Products'},
       },
       {
         path: 'categories',
-        loadChildren: () => import('../categories/categories.module').then(m => m.CategoriesModule)
+        loadChildren: () => import('../categories/categories.module').then(m => m.CategoriesModule),
+        data: { breadcrumb : 'Categories'},
       },
       {
         path: 'orders',
-        loadChildren: () => import('../cart/cart.module').then(m => m.CartModule)
+        loadChildren: () => import('../cart/cart.module').then(m => m.CartModule),
+        data: { breadcrumb : 'Orders'},
       }
     ]
   }

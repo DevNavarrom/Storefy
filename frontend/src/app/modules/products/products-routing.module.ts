@@ -7,15 +7,18 @@ import { DetailProductComponent } from './pages/detail-product/detail-product.co
 const routes: Routes = [
   {
     path: '',
-    component: ListProductsComponent
+    component: ListProductsComponent,
+    data: { breadcrumb : 'List'},
   },
   {
     path: 'create',
-    component: CreateProductComponent
+    component: CreateProductComponent,
+    data: { breadcrumb : 'Create'},
   },
   {
     path: 'detail/:sku',
-    component: DetailProductComponent
+    component: DetailProductComponent,
+    data: { breadcrumb : 'Edit'},
   },
 ];
 

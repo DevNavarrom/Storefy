@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
 import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
 
 
 
@@ -16,7 +17,8 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
     PaginationComponent,
     NotificationComponent,
     SearchBarComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +30,8 @@ import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.
     PaginationComponent,
     NotificationComponent,
     SearchBarComponent,
-    ModalConfirmComponent
+    ModalConfirmComponent,
+    BreadcrumbComponent
   ]
 })
 export class SharedModule { }
