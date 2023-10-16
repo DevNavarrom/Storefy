@@ -31,7 +31,6 @@ export class ProductController {
       total,
       skip,
     };
-    console.log(response);
     
     return response;
   }
@@ -39,6 +38,37 @@ export class ProductController {
   @Post(':filter')
   findOne( @Param('filter') filter: string, @Body() body: { term: string} ) {
     return this.productService.findOne(body.term, filter);
+  }
+
+  @Get('filter')
+  async search(
+    @Query('search') search: string = ''
+  ): Promise<ProductsResponseDTO> {
+    let options = {}
+
+    if (search) {
+      options = {
+        $or: [
+          { sku: new RegExp(search, 'i') },
+          { name: new RegExp(search, 'i') },
+          { description: new RegExp(search, 'i') },
+          { tags: new RegExp(search, 'i') }
+        ]
+      }
+    }
+    
+    const products: Product[] = await this.productService.find(options);
+
+    const total = await this.productService.count(options);
+
+    const response: ProductsResponseDTO = {
+      products,
+      total,
+      skip: 0,
+      limit: 10
+    }
+
+    return response;
   }
 
   @Patch(':term')

@@ -56,6 +56,14 @@ export class ProductService {
     return product;
   }
 
+  async find(options) {
+    return this.productModel.find(options);
+  }
+
+  count(options) {
+    return this.productModel.count(options).exec();
+  }
+
   async update( term: string, updateProductDto: UpdateProductDto) {
 
     const product = await this.findOne( term, 'sku' );
