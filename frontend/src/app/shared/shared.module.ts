@@ -6,6 +6,7 @@ import { NotificationComponent } from './components/notification/notification.co
 import { HttpClientModule } from '@angular/common/http';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
 import { FormsModule } from '@angular/forms';
+import { ModalConfirmComponent } from './components/modal-confirm/modal-confirm.component';
 
 
 
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     CardItemComponent,
     PaginationComponent,
     NotificationComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ModalConfirmComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     CardItemComponent, 
     PaginationComponent,
     NotificationComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ModalConfirmComponent
   ]
 })
 export class SharedModule { }

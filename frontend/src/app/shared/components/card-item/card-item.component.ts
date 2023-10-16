@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from 'src/app/core/models/product.model';
 
 @Component({
@@ -9,8 +9,7 @@ import { IProduct } from 'src/app/core/models/product.model';
 })
 export class CardItemComponent {
 
-  constructor( private router: Router ) {}
-
+  @Output() eventDelete = new EventEmitter<IProduct>();
   @Input() modelProduct: IProduct = {
     sku: '',
     name: '',
@@ -21,8 +20,14 @@ export class CardItemComponent {
     image: ''
   };
 
+  constructor( private router: Router ) {}
+
   navigate(): void {
     this.router.navigate(['/products/detail', this.modelProduct.sku]);
+  }
+
+  delete() {
+    this.eventDelete.emit(this.modelProduct);
   }
 
 }

@@ -3,6 +3,8 @@ import { IProduct } from 'src/app/core/models/product.model';
 import { ResponseProducts } from 'src/app/core/models/response.model';
 import { ProductsService } from '../../services/products.service';
 import { Observable, Subject, debounceTime, distinctUntilChanged, map, of, switchMap } from 'rxjs';
+import { NotificationService } from 'src/app/shared/services/notification.service';
+import { NotificationType } from 'src/app/core/models/notification.model';
 
 @Component({
   selector: 'app-list-products',
@@ -14,9 +16,13 @@ export class ListProductsComponent implements OnInit {
   dataProducts: ResponseProducts<IProduct> = new ResponseProducts<IProduct>();
 
   private searchTerms = new Subject<string>();
+
   observableProducts$: Observable<ResponseProducts<IProduct>> = of(new ResponseProducts<{}>);
 
-  constructor( private productsService: ProductsService ) {}
+  constructor( 
+    private productsService: ProductsService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit() {
 
@@ -34,7 +40,6 @@ export class ListProductsComponent implements OnInit {
 
     this.observableProducts$.subscribe((data) => {
       this.dataProducts = data;
-      console.log(data);
     });
 
   }
@@ -46,6 +51,21 @@ export class ListProductsComponent implements OnInit {
 
   handleSearch(term: string) {
     this.searchTerms.next(term);
+  }
+
+  handleDelete(v : IProduct) {
+    this.productsService.deleteProduct$(v._id??'').pipe(
+      map((data) => {
+        if (data.status) {
+          this.notificationService.notify({
+            title: 'Update Product',
+            message: data.message,
+            type: NotificationType.success
+          });
+          this.getProducts(0);
+        }
+      })
+    )
   }
 
 }

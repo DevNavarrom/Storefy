@@ -45,10 +45,13 @@ export class ProductsService {
   }
 
   searchProducts$( term: string ): Observable<ResponseProducts<IProduct>> {
-    console.log(term);
     return this.http.get<ResponseProducts<IProduct>>(`${this.URL}/product/filter?search=${term}`, {headers: this.headers}).pipe(
       map((data) => data)
     );
+  }
+
+  deleteProduct$( id: string ): Observable<any> {
+    return this.http.delete<any>(`${this.URL}/product?id=${id}`);
   }
 
 }
