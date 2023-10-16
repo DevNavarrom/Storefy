@@ -44,4 +44,11 @@ export class ProductsService {
     return this.http.post<IProduct>(`${this.URL}/product/sku`, filter, { headers: this.headers } );
   }
 
+  searchProducts$( term: string ): Observable<ResponseProducts<IProduct>> {
+    console.log(term);
+    return this.http.get<ResponseProducts<IProduct>>(`${this.URL}/product/filter?search=${term}`, {headers: this.headers}).pipe(
+      map((data) => data)
+    );
+  }
+
 }

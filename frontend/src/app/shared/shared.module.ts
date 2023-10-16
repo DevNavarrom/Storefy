@@ -4,6 +4,8 @@ import { CardItemComponent } from './components/card-item/card-item.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { NotificationComponent } from './components/notification/notification.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -11,16 +13,19 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     CardItemComponent,
     PaginationComponent,
-    NotificationComponent
+    NotificationComponent,
+    SearchBarComponent
   ],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   exports: [ 
     CardItemComponent, 
     PaginationComponent,
-    NotificationComponent
+    NotificationComponent,
+    SearchBarComponent
   ]
 })
 export class SharedModule { }
