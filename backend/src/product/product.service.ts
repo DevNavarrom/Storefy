@@ -84,14 +84,16 @@ export class ProductService {
     if ( deletedCount === 0 )
       throw new BadRequestException(`Product with id "${ id }" not found`);
 
-    return;
+    return {
+      message: 'Product successfully removed.',
+      status: true
+    };
   }
 
   private handleExceptions( error: any ) {
     if ( error.code === 11000 ) {
       throw new BadRequestException(`Product exists in db ${ JSON.stringify( error.keyValue ) }`);
     }
-    console.log(error);
     throw new InternalServerErrorException(`Can't create Product - Check server logs`);
   }
 
